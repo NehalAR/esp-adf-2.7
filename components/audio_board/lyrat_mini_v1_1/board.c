@@ -167,20 +167,20 @@ esp_err_t audio_board_key_init(esp_periph_set_handle_t set)
 
 esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mode_t mode)
 {
-    if (mode != SD_MODE_1_LINE) {
-        ESP_LOGE(TAG, "Current board only support 1-line SD mode!");
+    if (mode != SD_MODE_SPI) {
+        ESP_LOGE(TAG, "Current board only support SPI SD mode!");
         return ESP_FAIL;
     }
-    gpio_config_t sdcard_pwr_pin_cfg = {
-        .pin_bit_mask = 1UL << SDCARD_PWR_CTRL,
-        .mode = GPIO_MODE_OUTPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
+    // gpio_config_t sdcard_pwr_pin_cfg = {
+    //     .pin_bit_mask = 1UL << SDCARD_PWR_CTRL,
+    //     .mode = GPIO_MODE_OUTPUT,
+    //     .pull_up_en = GPIO_PULLUP_DISABLE,
+    //     .pull_down_en = GPIO_PULLDOWN_DISABLE,
+    //     .intr_type = GPIO_INTR_DISABLE,
+    // };
 
-    gpio_config(&sdcard_pwr_pin_cfg);
-    gpio_set_level(SDCARD_PWR_CTRL, 0);
+    // gpio_config(&sdcard_pwr_pin_cfg);
+    // gpio_set_level(SDCARD_PWR_CTRL, 1);
 
     periph_sdcard_cfg_t sdcard_cfg = {
         .root = "/sdcard",
@@ -203,6 +203,9 @@ esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set, periph_sdcard_mod
         ESP_LOGE(TAG, "Sdcard mount failed");
         return ESP_FAIL;
     }
+    else
+        ESP_LOGW(TAG, "Sdcard mounted");
+
     return ret;
 }
 

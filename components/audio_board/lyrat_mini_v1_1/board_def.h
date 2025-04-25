@@ -31,13 +31,21 @@
 #define FUNC_SDCARD_EN            (1)
 #define SDCARD_OPEN_FILE_NUM_MAX  (5)
 #define SDCARD_INTR_GPIO          GPIO_NUM_34
-#define SDCARD_PWR_CTRL           GPIO_NUM_13
+#define SDCARD_PWR_CTRL           GPIO_NUM_27
 
-#define ESP_SD_PIN_CLK            GPIO_NUM_14
-#define ESP_SD_PIN_CMD            GPIO_NUM_15
-#define ESP_SD_PIN_D0             GPIO_NUM_2
-#define ESP_SD_PIN_D3             (-1)
+#define ESP_SD_PIN_CLK            GPIO_NUM_32 // clk
+#define ESP_SD_PIN_CMD            GPIO_NUM_4  // mosi
+#define ESP_SD_PIN_D0             GPIO_NUM_33 // miso
+#define ESP_SD_PIN_D3             GPIO_NUM_14 // cs
 
+// #define ESP_SD_PIN_CLK            GPIO_NUM_18 // clk
+// #define ESP_SD_PIN_CMD            GPIO_NUM_21 // mosi
+// #define ESP_SD_PIN_D0             GPIO_NUM_19 // miso
+// #define ESP_SD_PIN_D3             GPIO_NUM_5  // cs
+// int sck = 32;
+// int miso = 33;
+// int mosi = 4;
+// int cs = 14;
 /**
  * @brief  LED Function Definition
  */
@@ -50,8 +58,8 @@
  */
 #define FUNC_AUDIO_CODEC_EN       (1)
 #define ES7243_MCLK_GPIO          GPIO_NUM_0
-#define HEADPHONE_DETECT          GPIO_NUM_19
-#define PA_ENABLE_GPIO            GPIO_NUM_21
+#define HEADPHONE_DETECT          GPIO_NUM_35
+#define PA_ENABLE_GPIO            5 //nehal GPIO_NUM_32
 #define ES8311_MCLK_SOURCE        1   /* 0 From MCLK of esp32   1 From BCLK */
 #define CODEC_ADC_I2S_PORT        ((i2s_port_t)1)
 #define CODEC_ADC_BITS_PER_SAMPLE ((i2s_data_bit_width_t)16) /* 16bit */

@@ -303,19 +303,19 @@ audio_element_handle_t a2dp_stream_init(a2dp_stream_config_t *config)
     cfg.task_stack = -1;  // No need task
     cfg.tag = "aadp";
 
-    esp_avrc_ct_init();
-    esp_avrc_ct_register_callback(bt_avrc_ct_cb);
+    // esp_avrc_ct_init();
+    // esp_avrc_ct_register_callback(bt_avrc_ct_cb);
 
-#if (ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(4, 0, 0))
-    if (s_aadp_handler.audio_hal == NULL) {
-        s_aadp_handler.audio_hal = config->audio_hal;
-    }
-    esp_avrc_tg_init();
-    esp_avrc_tg_register_callback(bt_avrc_tg_cb);
-    esp_avrc_rn_evt_cap_mask_t evt_set = {0};
-    esp_avrc_rn_evt_bit_mask_operation(ESP_AVRC_BIT_MASK_OP_SET, &evt_set, ESP_AVRC_RN_VOLUME_CHANGE);
-    esp_avrc_tg_set_rn_evt_cap(&evt_set);
-#endif
+// #if (ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(4, 0, 0))
+//     if (s_aadp_handler.audio_hal == NULL) {
+//         s_aadp_handler.audio_hal = config->audio_hal;
+//     }
+//     esp_avrc_tg_init();
+//     esp_avrc_tg_register_callback(bt_avrc_tg_cb);
+//     esp_avrc_rn_evt_cap_mask_t evt_set = {0};
+//     esp_avrc_rn_evt_bit_mask_operation(ESP_AVRC_BIT_MASK_OP_SET, &evt_set, ESP_AVRC_RN_VOLUME_CHANGE);
+//     esp_avrc_tg_set_rn_evt_cap(&evt_set);
+// #endif
 
     s_aadp_handler.connected_flag = 0;
 

@@ -129,6 +129,7 @@ esp_err_t sdcard_mount(const char *base_path, periph_sdcard_mode_t mode)
     } else {
         ESP_LOGI(TAG, "Using SPI mode, base path=%s", base_path);
         sdmmc_host_t host = SDSPI_HOST_DEFAULT();
+        // host.max_freq_khz = 3900;
 #if defined SD_PWR_CTRL_LDO_INTERNAL_IO
         host.pwr_ctrl_handle = pwr_ctrl_handle;
 #endif
@@ -150,7 +151,7 @@ esp_err_t sdcard_mount(const char *base_path, periph_sdcard_mode_t mode)
         slot_config.host_id = host.slot;
         ret = esp_vfs_fat_sdspi_mount(base_path, &host, &slot_config, &mount_config, &card);
     }
-
+    ESP_LOGI(TAG, "esp_vfs_fat_sdspi_mount %d\n", ret);
     switch (ret) {
         case ESP_OK:
             // Card has been initialized, print its properties
